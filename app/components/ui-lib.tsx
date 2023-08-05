@@ -42,6 +42,7 @@ export function Card(props: { children: JSX.Element[]; className?: string }) {
 }
 
 export function ListItem(props: {
+  hidden?: boolean;
   title: string;
   subTitle?: string;
   children?: JSX.Element | JSX.Element[];
@@ -49,6 +50,10 @@ export function ListItem(props: {
   className?: string;
   onClick?: () => void;
 }) {
+  if (props.hidden) {
+    return null;
+  }
+
   return (
     <div
       className={styles["list-item"] + ` ${props.className || ""}`}
@@ -71,12 +76,17 @@ export function ListItem(props: {
 }
 
 export function List(props: {
+  hidden?: boolean;
   children:
     | Array<JSX.Element | null | undefined>
     | JSX.Element
     | null
     | undefined;
 }) {
+  if (props.hidden) {
+    return null;
+  }
+
   return <div className={styles.list}>{props.children}</div>;
 }
 

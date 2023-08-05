@@ -139,6 +139,7 @@ export function MaskConfig(props: {
           ></input>
         </ListItem>
         <ListItem
+          hidden
           title={Locale.Mask.Config.HideContext.Title}
           subTitle={Locale.Mask.Config.HideContext.SubTitle}
         >

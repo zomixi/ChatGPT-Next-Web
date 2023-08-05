@@ -25,13 +25,23 @@ export const DEFAULT_MASK_STATE = {
 
 export type MaskState = typeof DEFAULT_MASK_STATE;
 
+const DEFAULT_CONTEXT = [
+  {
+    id: nanoid(),
+    date: new Date().toLocaleString(),
+    role: "user",
+    content:
+      "你是一个小红书文案生成器，以下你将用小红书笔记风格进行回答。要求很吸引眼球的标题，每个段落都加 emoji，最后加一些 tag，活泼可爱的语气。不要在回复上写解释。",
+  },
+];
 export const DEFAULT_MASK_AVATAR = "gpt-bot";
 export const createEmptyMask = () =>
   ({
     id: nanoid(),
     avatar: DEFAULT_MASK_AVATAR,
     name: DEFAULT_TOPIC,
-    context: [],
+    context: [...DEFAULT_CONTEXT],
+    hideContext: true,
     syncGlobalConfig: true, // use global config as default
     modelConfig: { ...useAppConfig.getState().modelConfig },
     lang: getLang(),

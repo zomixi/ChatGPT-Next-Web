@@ -30,6 +30,24 @@ const ACCESS_CODES = (function getAccessCodes(): Set<string> {
   }
 })();
 
+const ACCESS_CODE_EXPIRES = (function getAccessCodeExpires(): Map<
+  string,
+  number
+> {
+  try {
+    const codeExpires =
+      process.env.CODE_EXPIRES?.split(",").filter((v) => !!v) ?? [];
+    const hashCodeExpires = new Map<string, number>();
+    codeExpires.forEach((v) => {
+      const [code, expire] = v.split(":");
+      hashCodeExpires.set(md5.hash(code), Number(expire));
+    });
+    return hashCodeExpires;
+  } catch (e) {
+    return new Map();
+  }
+})();
+
 export const getServerSideConfig = () => {
   if (typeof process === "undefined") {
     throw Error(
@@ -41,6 +59,7 @@ export const getServerSideConfig = () => {
     apiKey: process.env.OPENAI_API_KEY,
     code: process.env.CODE,
     codes: ACCESS_CODES,
+    codeExpires: ACCESS_CODE_EXPIRES,
     needCode: ACCESS_CODES.size > 0,
     baseUrl: process.env.BASE_URL,
     proxyUrl: process.env.PROXY_URL,

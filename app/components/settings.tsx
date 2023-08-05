@@ -636,6 +636,7 @@ export function Settings() {
           </ListItem>
 
           <ListItem
+            hidden
             title={Locale.Settings.Update.Version(currentVersion ?? "unknown")}
             subTitle={
               checkingUpdate
@@ -764,7 +765,7 @@ export function Settings() {
 
         <SyncItems />
 
-        <List>
+        <List hidden>
           <ListItem
             title={Locale.Settings.Mask.Splash.Title}
             subTitle={Locale.Settings.Mask.Splash.SubTitle}
@@ -799,7 +800,7 @@ export function Settings() {
           </ListItem>
         </List>
 
-        <List>
+        <List hidden>
           <ListItem
             title={Locale.Settings.Prompt.Disable.Title}
             subTitle={Locale.Settings.Prompt.Disable.SubTitle}
@@ -908,6 +909,7 @@ export function Settings() {
           ) : null}
 
           <ListItem
+            hidden
             title={Locale.Settings.CustomModel.Title}
             subTitle={Locale.Settings.CustomModel.SubTitle}
           >
@@ -924,7 +926,7 @@ export function Settings() {
           </ListItem>
         </List>
 
-        <List>
+        <List hidden>
           <ModelConfigList
             modelConfig={config.modelConfig}
             updateConfig={(updater) => {
