@@ -446,7 +446,7 @@ function SyncItems() {
 
   return (
     <>
-      <List>
+      <List hidden>
         <ListItem
           title={Locale.Settings.Sync.CloudState}
           subTitle={

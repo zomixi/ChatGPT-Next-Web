@@ -326,6 +326,7 @@ function ClearContextDivider() {
 }
 
 function ChatAction(props: {
+  hidden? :boolean;
   text: string;
   icon: JSX.Element;
   onClick: () => void;
@@ -347,6 +348,8 @@ function ChatAction(props: {
       icon: iconWidth,
     });
   }
+
+  if (props.hidden) return null;
 
   return (
     <div
@@ -481,12 +484,14 @@ export function ChatActions(props: {
       />
 
       <ChatAction
+        hidden
         onClick={props.showPromptHints}
         text={Locale.Chat.InputActions.Prompt}
         icon={<PromptIcon />}
       />
 
       <ChatAction
+        hidden
         onClick={() => {
           navigate(Path.Masks);
         }}
@@ -510,6 +515,7 @@ export function ChatActions(props: {
       />
 
       <ChatAction
+        hidden
         onClick={() => setShowModelSelector(true)}
         text={currentModel}
         icon={<RobotIcon />}
