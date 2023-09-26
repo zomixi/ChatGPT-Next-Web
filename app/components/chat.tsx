@@ -1162,7 +1162,7 @@ function _Chat() {
                         <Avatar avatar={config.avatar} />
                       ) : (
                         <>
-                          {["system", "context"].includes(message.role) ? (
+                          {["system"].includes(message.role) ? (
                             <Avatar avatar="2699-fe0f" />
                           ) : (
                             <MaskAvatar mask={session.mask} />
