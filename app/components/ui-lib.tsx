@@ -76,18 +76,19 @@ export function ListItem(props: {
 }
 
 export function List(props: {
+  children: React.ReactNode;
+  id?: string;
   hidden?: boolean;
-  children:
-    | Array<JSX.Element | null | undefined>
-    | JSX.Element
-    | null
-    | undefined;
 }) {
   if (props.hidden) {
     return null;
   }
 
-  return <div className={styles.list}>{props.children}</div>;
+  return (
+    <div className={styles.list} id={props.id}>
+      {props.children}
+    </div>
+  );
 }
 
 export function Loading() {
@@ -109,8 +110,9 @@ export function Loading() {
 interface ModalProps {
   title: string;
   children?: any;
-  actions?: JSX.Element[];
+  actions?: React.ReactNode[];
   defaultMax?: boolean;
+  footer?: React.ReactNode;
   onClose?: () => void;
 }
 export function Modal(props: ModalProps) {
@@ -159,6 +161,7 @@ export function Modal(props: ModalProps) {
       <div className={styles["modal-content"]}>{props.children}</div>
 
       <div className={styles["modal-footer"]}>
+        {props.footer}
         <div className={styles["modal-actions"]}>
           {props.actions?.map((action, i) => (
             <div key={i} className={styles["modal-action"]}>
